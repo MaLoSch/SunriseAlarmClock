@@ -53,6 +53,11 @@ Encoder myEnc(2,3); // Encoder is connected to digital pins 2 and 3 (both of whi
 //   Good Performance: only the first pin has interrupt capability
 //   Low Performance:  neither pin has interrupt capability
 
+/* NON BLOCKING */
+unsigned long prevMillis = 0; // variable to store last time code was updated
+unsigned long currentMillis = 0; // variable to store how long the code has been running for
+const long interval = 100; // variable to store interval in which code will be updated (could have more than one)
+
 void setup() { 
   Serial.begin(9600);
   pinMode(buttonPin, INPUT); // Initialize buttonPin as an Input
@@ -61,64 +66,14 @@ void setup() {
 }
 
 void loop() {
-  readEnc(); // read encoder
-  //readBttn(); // read button
-  readTime(); // read current time
-}
 
-void readEnc() {
-  currentPosition = myEnc.read()/4; // read encoder, divide value by 4 and store it in currentPosition 
-  //(since it is a quadrature encoder it puts out the values 1,2,3,4 on one turn but we only want it to put out the value 1)
-  if(currentPosition != prevPosition) {
-    if(currentPosition > prevPosition) {
-      encVal ++;
-    } else {
-      encVal --;
-    }
-    encVal = constrain(encVal, 0, 10);
-    prevPosition = currentPosition; // if prevPosition is unqual currentPosition we update prevPosition to currentPosition
-    setLight();
-  }
-}
-
-void readBttn() {
-  currentButtonState = digitalRead(buttonPin);
-  if(currentButtonState != prevButtonState) {
-    prevButtonState = currentButtonState;
-    Serial.println(currentButtonState);
-  }
-}
-
-void setLight() {
-
-  c_val = map(encVal,0,10,0,255);
-  
-  for(int ledIndex = 0; ledIndex < numPixelPerLight; ledIndex ++) {
-    bottomLight[ledIndex] = CHSV(c_hue,c_sat,c_val);
-    rightLight[ledIndex] = CHSV(c_hue,c_sat,c_val);
-  }
-  Serial.println(c_val);
-  FastLED.show();
-}
-
-void readTime() {
-  if(RTC.read(tm)) {
-    //store time in variable
-    currentHour = tm.Hour;
-    currentMinute = tm.Minute;
-    Serial.print(currentHour);
-    Serial.print(":");
-    Serial.print(currentMinute);
-    Serial.println();
-  } else {
-    if (RTC.chipPresent()) {
-      // RTC chip is present but stopped. 'SetTime' needs to be run to initialize time.
-      Serial.println("Hmmm... the DS1307 is stopped.  Please run the 'SetTime' example to initialize the time.");
-      Serial.println();
-    } else {
-      // RTC cannot be deteced. Check circuitry.
-      Serial.println("Uh-oh... Couldn't read the DS1307! Please check the circuitry.");
-      Serial.println();
-    }
+  currentMillis = millis();
+  if(currentMillis - prevMillis >= interval) {
+    prevMillis = currentMillis;
+    
+    // Update code
+    readEnc(); // read encoder
+    //readBttn(); // read button
+    readTime(); // read current time
   }
 }
