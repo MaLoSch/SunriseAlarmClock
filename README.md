@@ -6,6 +6,7 @@ ToDo's
 	- remove unnecessary variables
 	- tighten up code
 - Set alarm time
+	- Set alarm time with encoder and button
 	- Turn on light on alarm
 - Simulate sunrise
 - Display alarm time (in hours)
