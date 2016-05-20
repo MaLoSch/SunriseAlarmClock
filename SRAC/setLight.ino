@@ -5,6 +5,6 @@ void setLight() {
     bottomLight[ledIndex] = CHSV(c_hue,c_sat,c_val);
     rightLight[ledIndex] = CHSV(c_hue,c_sat,c_val);
   }
-  Serial.println(c_val);
+  //Serial.println(c_val); // Print LED brightness value
   FastLED.show();
 }

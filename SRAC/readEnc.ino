@@ -9,6 +9,7 @@ void readEnc() {
     }
     encVal = constrain(encVal, 0, 10);
     prevPosition = currentPosition; // if prevPosition is unqual currentPosition we update prevPosition to currentPosition
+    readTime();
     setLight();
   }
 }

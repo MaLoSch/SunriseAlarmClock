@@ -74,6 +74,6 @@ void loop() {
     // Update code
     readEnc(); // read encoder
     //readBttn(); // read button
-    readTime(); // read current time
+    //readTime(); // read current time
   }
 }

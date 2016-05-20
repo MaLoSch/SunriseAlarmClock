@@ -3,9 +3,20 @@ void readTime() {
     //store time in variable
     currentHour = tm.Hour;
     currentMinute = tm.Minute;
+    Serial.print("Current time: ");
     Serial.print(currentHour);
     Serial.print(":");
     Serial.print(currentMinute);
+    Serial.println();
+    alarmHour = currentHour + encVal;
+    if(alarmHour >= 24) {
+      alarmHour = alarmHour - 24;
+    }
+    alarmMinute = currentMinute;
+    Serial.print("Alarm time: ");
+    Serial.print(alarmHour);
+    Serial.print(":");
+    Serial.print(alarmMinute);
     Serial.println();
   } else {
     if (RTC.chipPresent()) {
