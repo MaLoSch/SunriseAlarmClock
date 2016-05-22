@@ -41,8 +41,8 @@ int c_sat = 0;
 int c_val = 0;
 
 /* BUTTON */
-int currentButtonState = 0; // variable to store current state of pushbutton
-int prevButtonState = -1; // variable to store previous state of pushbutton
+int currentButtonState = 0; // variable to store current state of button
+int prevButtonState = -1; // variable to store previous state of button
 
 /* ENCODER */
 long prevPosition = 0; // variable to store old position of encoder
@@ -72,8 +72,8 @@ void loop() {
     prevMillis = currentMillis;
     
     // Update code
-    readEnc(); // read encoder
-    //readBttn(); // read button
-    //readTime(); // read current time
+    readEnc(); // Read encoder and set light accordingly. Also read current time
+    readBttn();  // Read button and turn ON/OFF alarm
+    // alarm(); // Check if alarm is ON and if currentTime == alarmTime
   }
 }
