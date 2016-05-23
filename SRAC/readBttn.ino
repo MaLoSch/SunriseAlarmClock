@@ -4,8 +4,13 @@ void readBttn() {
     prevButtonState = currentButtonState;
     Serial.println(currentButtonState);
     if(currentButtonState == 1) {
-      setAlarm();
+      if(encVal == 0) {
+        Serial.println("Alarm cannot be set!");
+      } else { 
+        setAlarm();
+      }
     } else {
+      //alarmOff
     }
   }
 }

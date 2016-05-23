@@ -73,6 +73,7 @@ void loop() {
     
     // Update code
     readEnc(); // Read encoder and set light accordingly. Also read current time
+    setLight(encVal); // Set lights according to encVal
     readBttn();  // Read button and turn ON/OFF alarm
     // alarm(); // Check if alarm is ON and if currentTime == alarmTime
   }
