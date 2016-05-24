@@ -15,6 +15,7 @@ ToDo's
 - ...
 
 Wishlist
+- Adafruit circular white LED ring
 - Add sound capability
 	- https://www.adafruit.com/products/94
 	- https://www.adafruit.com/products/1788
