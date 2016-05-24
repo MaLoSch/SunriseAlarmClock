@@ -32,8 +32,11 @@ CRGB rightLight[numPixelPerLight]; // Right LED strip
 tmElements_t tm; // Initiate a tmElements_t object called tm that can access the current time
 int currentHour;
 int currentMinute;
+
+/* ALARM */
 int alarmHour;
 int alarmMinute;
+boolean alarmMode = false;
 
 /* LIGHT */
 int c_hue = 0;
@@ -75,6 +78,9 @@ void loop() {
     readEnc(); // Read encoder and set light accordingly. Also read current time
     setLight(encVal); // Set lights according to encVal
     readBttn();  // Read button and turn ON/OFF alarm
-    // alarm(); // Check if alarm is ON and if currentTime == alarmTime
+    checkAlarm(); // Check if alarm is ON and if currentTime == alarmTime
+    Serial.println("");
+    Serial.println("---------------------------------------");
+    Serial.println("");
   }
 }

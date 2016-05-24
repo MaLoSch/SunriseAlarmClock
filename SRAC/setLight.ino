@@ -6,4 +6,9 @@ void setLight(int localEncVal) {
     rightLight[ledIndex] = CHSV(c_hue,c_sat,c_val);
   }
   FastLED.show();
+
+  // Console
+  Serial.println("setLight()");
+  Serial.print("c_val: ");
+  Serial.println(c_val);
 }

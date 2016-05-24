@@ -4,9 +4,13 @@ void setAlarm() {
     alarmHour = alarmHour - 24;
   }
   alarmMinute = readMinute();
+  alarmMode = true;
+  Serial.println("setAlarm()");
+  Serial.print("Alarm mode: ");
+  Serial.println(alarmMode);
   Serial.println("Alarm set to: ");
   Serial.print(alarmHour);
   Serial.print(":");
-  Serial.print(alarmHour);
+  Serial.print(alarmMinute);
   Serial.println();
 }
