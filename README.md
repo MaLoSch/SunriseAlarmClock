@@ -6,16 +6,14 @@ ToDo's
 	- remove unnecessary variables
 	- tighten up code
 - Set alarm time
-	- Set alarm time with encoder and button
 	- Turn on light on alarm
 - Simulate sunrise
-- Display alarm time (in hours)
+- Display current time and alarm time with LED ring
 - Feedback when alarm is set through button LED ring lighting up
 - Check battery in RTC module
 - ...
 
 Wishlist
-- Adafruit circular white LED ring
 - Add sound capability
 	- https://www.adafruit.com/products/94
 	- https://www.adafruit.com/products/1788
