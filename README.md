@@ -2,6 +2,8 @@
 Files to build and code the DIY Sunrise Alarm Clock
 
 ToDo's
+- BUG: Alarm can be set even though RTC is not available or needs to be initialized
+	- To view bug in console set encVal != 0 and press button when RTC is not available or needs to be initialized
 - Clean up code
 	- remove unnecessary variables
 	- tighten up code

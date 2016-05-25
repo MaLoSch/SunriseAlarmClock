@@ -17,16 +17,18 @@
 #include <Encoder.h> // Include the encoder library to easily read the rotary encoder
 
 /* CONSTANT VARIABLES */
-const int lowerLight_Pin = 5; // Pin # for lower light
-const int rightLight_Pin = 6; // Pin # for lower light
+const int firstLight_Pin = 5; // Pin # for lower light
+const int secondLight_Pin = 6; // Pin # for lower light
+const int thirdLight_Pin = 9; // Pin # for lower light
+const int fourthLight_Pin = 10; // Pin # for lower light
 const int numPixelPerLight = 12; // # of pixels per LED strip
 const int buttonPin = 12;
 
 /* NEOPIXEL */
-CRGB bottomLight[numPixelPerLight]; // Bottom LED strip
-CRGB rightLight[numPixelPerLight]; // Right LED strip
-// CRGB bottomLight[numPixelPerLight]; // Array of LED
-// CRGB bottomLight[numPixelPerLight]; // Array of LED
+CRGB firstLight[numPixelPerLight]; // 1st LED strip
+CRGB secondLight[numPixelPerLight]; // 2nd LED strip
+CRGB thirdLight[numPixelPerLight]; // 3rd LED strip
+CRGB fourthLight[numPixelPerLight]; // 4th LED strip
 
 /* TIME */
 tmElements_t tm; // Initiate a tmElements_t object called tm that can access the current time
@@ -42,6 +44,10 @@ boolean alarmMode = false;
 int c_hue = 0;
 int c_sat = 0;
 int c_val = 0;
+float pSunriseLight; // variable to store value in graph equation to calculate perceived light brightness when simulating sunrise
+float pEncLight; // variable to store value in graph equation to calculate perceived light brightness when using encoder
+const int lightSunriseIntervals = 100;
+const int lightEncIntervals = 10;
 
 /* BUTTON */
 int currentButtonState = 0; // variable to store current state of button
@@ -64,8 +70,13 @@ const long interval = 100; // variable to store interval in which code will be u
 void setup() { 
   Serial.begin(9600);
   pinMode(buttonPin, INPUT); // Initialize buttonPin as an Input
-  FastLED.addLeds<WS2812B, lowerLight_Pin, GRB>(bottomLight, numPixelPerLight);
-  FastLED.addLeds<WS2812B, rightLight_Pin, GRB>(rightLight, numPixelPerLight);
+  FastLED.addLeds<WS2812B, firstLight_Pin, GRB>(firstLight, numPixelPerLight);
+  FastLED.addLeds<WS2812B, secondLight_Pin, GRB>(secondLight, numPixelPerLight);
+  FastLED.addLeds<WS2812B, thirdLight_Pin, GRB>(thirdLight, numPixelPerLight);
+  FastLED.addLeds<WS2812B, fourthLight_Pin, GRB>(fourthLight, numPixelPerLight);
+
+  pSunriseLight = ((lightSunriseIntervals+2) * log10(2))/(log10(255)); // calculate pSunriseLight
+  pEncLight = ((lightEncIntervals+2) * log10(2))/(log10(255)); // calculate pEncLight
 }
 
 void loop() {

@@ -14,6 +14,6 @@ void readEnc() {
 
   // Console
   Serial.println("readEnc()");
-  Serial.print("currentPosition: ");
-  Serial.println(currentPosition);
+  Serial.print("encVal: ");
+  Serial.println(encVal);
 }
