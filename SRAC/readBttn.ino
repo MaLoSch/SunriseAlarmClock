@@ -15,7 +15,8 @@ void readBttn() {
     } else {
       alarmMode = false;
       Serial.println("readBttn()");
-      Serial.println("Alarm off");
+      Serial.print("Alarm mode: ");
+      Serial.println(alarmMode);
       //alarmOff
     }
   }

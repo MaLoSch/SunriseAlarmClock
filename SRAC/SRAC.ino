@@ -6,7 +6,7 @@
  * http://malosch.com/
  * 
  * GitHub
- * https://github.com/malosch
+ * https://github.com/MaLoSch/SunriseAlarmClock
 */
  
 /* LIBRARIES */

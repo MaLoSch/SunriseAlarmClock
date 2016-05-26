@@ -1,16 +1,29 @@
 void setAlarm() {
-  alarmHour = readHour() + encVal;
-  if(alarmHour >= 24) {
-    alarmHour = alarmHour - 24;
+  if(RTC.read(tm)) {
+    alarmHour = tm.Hour + encVal;
+    alarmMinute = tm.Minute;
+    if(alarmHour >= 24) {
+      alarmHour = alarmHour - 24;
+    }
+    alarmMode = true;
+    Serial.println("setAlarm()");
+    Serial.print("Alarm mode: ");
+    Serial.println(alarmMode);
+    Serial.println("Alarm set to: ");
+    Serial.print(alarmHour);
+    Serial.print(":");
+    Serial.print(alarmMinute);
+    Serial.println();
+  } else {
+    if (RTC.chipPresent()) {
+      // RTC chip is present but stopped. 'SetTime' needs to be run to initialize time.
+      Serial.println("Hmmm... the DS1307 is stopped.  Please run the 'SetTime' example to initialize the time.");
+      Serial.println();
+    } else {
+      // RTC cannot be deteced. Check circuitry.
+      Serial.println("Uh-oh... Couldn't read the DS1307! Please check the circuitry.");
+      Serial.println();
+    }
+    alarmMode = false;
   }
-  alarmMinute = readMinute();
-  alarmMode = true;
-  Serial.println("setAlarm()");
-  Serial.print("Alarm mode: ");
-  Serial.println(alarmMode);
-  Serial.println("Alarm set to: ");
-  Serial.print(alarmHour);
-  Serial.print(":");
-  Serial.print(alarmMinute);
-  Serial.println();
 }
