@@ -36,8 +36,8 @@ int currentHour;
 int currentMinute;
 
 /* ALARM */
-int alarmHour;
-int alarmMinute;
+int alarmHour = 19;
+int alarmMinute = 31;
 boolean alarmMode = false;
 
 /* LIGHT */
@@ -68,6 +68,8 @@ unsigned long currentMillis = 0; // variable to store how long the code has been
 const long interval = 100; // variable to store interval in which code will be updated (could have more than one)
 
 void setup() { 
+  pinMode(13, OUTPUT);
+  digitalWrite(13, LOW);
   Serial.begin(9600);
   pinMode(buttonPin, INPUT); // Initialize buttonPin as an Input
   FastLED.addLeds<WS2812B, firstLight_Pin, GRB>(firstLight, numPixelPerLight);
