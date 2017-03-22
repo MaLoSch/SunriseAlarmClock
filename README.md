@@ -15,6 +15,13 @@ ToDo's
 - Check battery in RTC module
 - ...
 
+Components
+- Arduino UNO R3 - https://www.adafruit.com/products/50
+- Solid Machine Metal Knob -  https://www.adafruit.com/products/2056
+- Rugged Metal ON/OFF Switch with white LED ring - https://www.adafruit.com/products/917
+- 2x Adafruit NeoPixel NeoMatrix 8x8 - https://www.adafruit.com/products/1487
+- Half-sized Breadboard - https://www.adafruit.com/product/64
+
 Wishlist
 - Add sound capability
 	- https://www.adafruit.com/products/94

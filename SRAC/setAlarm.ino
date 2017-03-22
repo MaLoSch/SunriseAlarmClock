@@ -1,9 +1,14 @@
 void setAlarm() {
   if(RTC.read(tm)) {
-    alarmHour = tm.Hour + encVal;
-    alarmMinute = tm.Minute;
-    if(alarmHour >= 24) {
-      alarmHour = alarmHour - 24;
+//    alarmHour = tm.Hour + encVal;
+//    alarmMinute = tm.Minute;
+//    if(alarmHour >= 24) {
+//      alarmHour = alarmHour - 24;
+//    }
+    alarmHour = tm.Hour;
+    alarmMinute = tm.Minute + encVal;
+    if(alarmMinute >= 60) {
+      alarmMinute = alarmMinute - 60;
     }
     alarmMode = true;
     Serial.println("setAlarm()");
