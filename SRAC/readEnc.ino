@@ -11,9 +11,4 @@ void readEnc() {
     encVal = constrain(encVal, 0, 10);
     prevPosition = currentPosition; // if prevPosition is unqual currentPosition we update prevPosition to currentPosition
   }
-
-  // Console
-  Serial.println("readEnc()");
-  Serial.print("encVal: ");
-  Serial.println(encVal);
 }

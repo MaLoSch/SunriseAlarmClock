@@ -11,14 +11,6 @@ void setAlarm() {
       alarmMinute = alarmMinute - 60;
     }
     alarmMode = true;
-    Serial.println("setAlarm()");
-    Serial.print("Alarm mode: ");
-    Serial.println(alarmMode);
-    Serial.println("Alarm set to: ");
-    Serial.print(alarmHour);
-    Serial.print(":");
-    Serial.print(alarmMinute);
-    Serial.println();
   } else {
     if (RTC.chipPresent()) {
       // RTC chip is present but stopped. 'SetTime' needs to be run to initialize time.
