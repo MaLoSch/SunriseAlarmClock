@@ -20,6 +20,18 @@
 const int rgbLEDMatrixPin = 9; // Pin # for lower light
 const int numPixelPerMatrix = 64; // # of pixels per LED strip
 const int buttonPin = 12; // pin the push button is connected to
+char* numbers[] = {
+  "0000000000000000111111111111111111000011110000111111111111111111", // #0
+  "0000000000000000000000000000000000000000000000001111111111111111", // #1
+  "0000000000000000111110111111101111011011110110111101111111011111", // #2
+  "0000000000000000110110111101101111011011110110111111111111111111", // #3
+  "0000000000000000000111110001111100011000000110001111111111111111", // #4
+  "0000000000000000110111111101111111011011110110111111101111111011", // #5
+  "0000000000000000111111111111111111011011110110111111101111111011", // #6
+  "0000000000000000000000110000001100000011000000111111111111111111", // #7
+  "0000000000000000111111111111111111011011110110111111111111111111", // #8
+  "0000000000000000110111111101111111011011110110111111111111111111"  // #9
+  };
 
 /* NEOPIXEL */
 CRGB rgbLEDMatrix[numPixelPerMatrix]; // RGB LED Matrix
@@ -30,18 +42,14 @@ int currentHour; // variable to store current hour as an integer
 int currentMinute; // variable to store current minute as an integer
 
 /* ALARM */
-int alarmHour = 23; // variable to store the hour of the set alarm time
-int alarmMinute = 35; // variable to store the minute of the set alarm time
+int alarmHour = 22; // variable to store the hour of the set alarm time
+int alarmMinute = 29; // variable to store the minute of the set alarm time
 boolean alarmMode = false; // boolean to store whether an alarm is set or not
 
 /* LIGHT */
-int c_hue = 0; // variable to store hue value of color
-int c_sat = 0; // variable to store saturation value of color
+int c_hue = 30; // variable to store hue value of color
+int c_sat = 255; // variable to store saturation value of color
 int c_val = 0; // variable to store brightness value of color
-float pSunriseLight; // variable to store value in graph equation to calculate perceived light brightness when simulating sunrise
-float pEncLight; // variable to store value in graph equation to calculate perceived light brightness when using encoder
-const int lightSunriseIntervals = 100;
-const int lightEncIntervals = 10;
 boolean sunriseMode = false;
 
 /* BUTTON */
@@ -68,9 +76,6 @@ void setup() {
   Serial.begin(9600);
   pinMode(buttonPin, INPUT); // Initialize buttonPin as an Input
   FastLED.addLeds<WS2812B, rgbLEDMatrixPin, GRB>(rgbLEDMatrix, numPixelPerMatrix);
-
-  pSunriseLight = ((lightSunriseIntervals+2) * log10(2))/(log10(255)); // calculate pSunriseLight
-  pEncLight = ((lightEncIntervals+2) * log10(2))/(log10(255)); // calculate pEncLight
 }
 
 void loop() {
@@ -82,7 +87,7 @@ void loop() {
     // Update code
     readEnc(); // Read encoder
     readTime(); // Read current time
-    //readBttn();  // Read button and turn ON/OFF alarm
+    readBttn();  // Read button and turn ON/OFF alarm
     if(sunriseMode) {
       sunrise();
     }

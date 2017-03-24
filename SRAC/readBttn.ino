@@ -3,8 +3,7 @@ void readBttn() {
   if(currentButtonState != prevButtonState) {
     prevButtonState = currentButtonState;
     if(currentButtonState == 1) {
-      if(encVal == 0) {
-      } else { 
+      if(encVal != 0) {
         setAlarm();
       }
     } else {
