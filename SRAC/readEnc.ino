@@ -10,6 +10,6 @@ void readEnc() {
     }
     encVal = constrain(encVal, 0, 9);
     prevPosition = currentPosition; // if prevPosition is unqual currentPosition we update prevPosition to currentPosition
-    showAlarmTime(numbers[encVal]);
+    showAlarmTime(encVal);
   }
 }
