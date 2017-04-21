@@ -28,5 +28,3 @@ Wishlist
 	- https://www.adafruit.com/products/1788
 	- https://www.adafruit.com/products/1790
 	- https://www.adafruit.com/products/175
-- Add Ethernet capability
-	- https://www.adafruit.com/products/418
