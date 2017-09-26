@@ -15,6 +15,9 @@
 #include <Time.h> // Include time library
 #include <DS1307RTC.h> // Include DS1307 RTC library for the tiny RTC module
 #include <Encoder.h> // Include the encoder library to easily read the rotary encoder
+#include <SPI.h> // Include library which allows communication with SPI (Serial Peripheral Interface) devices
+#include <Adafruit_VS1053.h> // Includes Adafruit's library for playing MP3 files https://github.com/adafruit/Adafruit_VS1053_Library
+#include <SD.h> // Include library to read/write SD cards
 
 /* CONSTANT VARIABLES */
 const int rgbLEDMatrixPin = 9; // Pin # for lower light
