@@ -19,6 +19,13 @@
 #include <Adafruit_VS1053.h> // Includes Adafruit's library for playing MP3 files https://github.com/adafruit/Adafruit_VS1053_Library
 #include <SD.h> // Include library to read/write SD cards
 
+/* AUDIO */
+#define SHIELD_RESET -1 // VS1053 reset pin (unused!)
+#define SHIELD_CS 7 // VS1053 chip select pin (output)
+#define SHIELD_DCS 6 // VS1053 Data/Command select pin (output)
+#define CARDCS 4 // Card chip select pint
+#define DREQ 3 // VS1053 Data request, ideally an Interrupt pin
+
 /* CONSTANT VARIABLES */
 const int rgbLEDMatrixPin = 9; // Pin # for lower light
 const int numPixelPerMatrix = 64; // # of pixels per LED strip
@@ -154,7 +161,7 @@ long prevPosition = 0; // variable to store old position of encoder
 long currentPosition = -999; // variable to store current position of encoder
 int encVal = 0; // value of encoder (0-10)
 
-Encoder myEnc(2,3); // Encoder is connected to digital pins 2 and 3 (both of which have interrupt capability)
+// Encoder myEnc(2,3); // Encoder is connected to digital pins 2 and 3 (both of which have interrupt capability)
 //   Best Performance: both pins have interrupt capability
 //   Good Performance: only the first pin has interrupt capability
 //   Low Performance:  neither pin has interrupt capability
@@ -179,12 +186,12 @@ void loop() {
     prevMillis = currentMillis;
     
     // Update code
-    readEnc(); // Read encoder
-    readTime(); // Read current time
-    readBttn();  // Read button and turn ON/OFF alarm
-    if(sunriseMode) {
-      sunrise();
-    }
-    checkAlarm(); // Check if alarm is ON and if currentTime == alarmTime
+    // readEnc(); // Read encoder -> UNCOMMENTED SINCE ONE INTERRUPT PIN IS NOW USED BY THE MP3 SHIELD. NEEDS TO GET RESOLVED
+    // readTime(); // Read current time -> NO RTC CONNECTED
+    // readBttn();  // Read button and turn ON/OFF alarm -> NO BUTTON CONNECTED
+    // if(sunriseMode) {
+      // sunrise();
+    // }
+    // checkAlarm(); // Check if alarm is ON and if currentTime == alarmTime -> CAN'T CHECK ALARM SINCE TIME IS UNKNOWN (SEE readTime())
   }
 }
